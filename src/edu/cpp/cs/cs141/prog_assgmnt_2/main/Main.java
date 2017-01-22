@@ -10,18 +10,21 @@
  */
 package edu.cpp.cs.cs141.prog_assgmnt_2.main;
 
+import edu.cpp.cs.cs141.prog_assgmnt_2.engine.GameEngine;
+
 /**
  * 
  * 
  * @author Zach Kaufman
  */
 public class Main {
-
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		GameEngine game = new GameEngine();
+		game.start();
 	}
 
 }

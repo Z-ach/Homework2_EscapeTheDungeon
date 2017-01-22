@@ -17,6 +17,8 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.Agents;
  */
 public class ActiveAgents {
 	
+	private int health;
+	
 	public ActiveAgents(){
 		
 	}

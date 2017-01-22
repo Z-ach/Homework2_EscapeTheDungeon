@@ -17,6 +17,8 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.gun;
  */
 public class Gun {
 	
+	
+	
 	public Gun(){
 		
 	}
