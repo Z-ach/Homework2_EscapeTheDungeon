@@ -53,5 +53,24 @@ public class UserInterface {
 		System.out.println("An enemy appears. He points his weapon at you. It's a " + gun + ".");
 	}
 	
+	public void decisionTime(){
+		System.out.println("Do you want to shoot, or attempt to flee? Enter \"shoot\" or \"flee\"");
+	}
+	
+	public void fleeMessage(boolean flee){
+		System.out.println("You attempt to flee");
+		if(flee)
+			System.out.println("You manage to escape with your life. You go back 1 step.");
+		else
+			System.out.println("The thing in the darkness grabs you and pulls you back. Flee failed.");
+	}
+	
+	public void shootMessage(boolean hit){
+		if(hit)
+			System.out.println("The shot hits it mark.");
+		else
+			System.out.println("The shot misses.");
+	}
+	
 	
 }

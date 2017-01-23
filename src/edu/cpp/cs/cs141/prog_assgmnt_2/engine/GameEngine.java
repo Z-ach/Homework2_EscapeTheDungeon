@@ -34,13 +34,15 @@ public class GameEngine {
 
 	private String weaponChoice;
 
+	private String decision;
+
 	private Gun playerGun, enemyGun;
-	
+
 	private ActiveAgent player, enemy;
-	
+
 	private boolean playing;
-	
-	private final int[] gunSpawnChance = {50, 35, 15};
+
+	private final int[] gunSpawnChance = { 50, 35, 15 };
 
 	private Random rand;
 
@@ -55,26 +57,53 @@ public class GameEngine {
 		ui.startMessage();
 		ui.promptForWeapon();
 		giveGun(true);
-		
-		while(playing){
+
+		while (playing) {
 			playing = keepGoing();
-			
-			if(takeStep()){
+
+			if (takeStep()) {
 				createEnemy();
+				while (enemy.getHealth() > 0) {
+					ui.decisionTime();
+					decision = ui.getInput();
+					switch (decision) {
+					case "flee":
+						ui.fleeMessage(flee());
+						break;
+					case "shoot":
+						ui.shootMessage(shoot(true));
+					}
+				}
 			}
-			
-			
+
 		}
 	}
-	
-	private boolean keepGoing(){
+
+	private boolean shoot(boolean isPlayer) {
+		if (isPlayer) {
+			if (rand.nextInt(100) + 1 <= playerGun.getAccuracy()) {
+				enemy.takeDamage(playerGun.shoot());
+			}
+		}
+		return false;
+	}
+
+	private boolean flee() {
+		if (rand.nextInt(10) + 1 == 1) {
+			steps++;
+			return true;
+		}
+		return false;
+	}
+
+	private boolean keepGoing() {
 		return steps > 0 && player.getHealth() > 0;
 	}
-	
-	private boolean takeStep(){
+
+	private boolean takeStep() {
 		steps--;
 		ui.stepMessage(steps);
-		if(rand.nextInt(100) + 1 <= 15){
+		if (rand.nextInt(100) + 1 <= 15) {
 			return true;
 		}
 		return false;
@@ -86,28 +115,29 @@ public class GameEngine {
 			switch (weaponChoice.toLowerCase()) {
 			case "pistol":
 				playerGun = new Gun("Pistol");
+				break;
 			case "rifle":
 				playerGun = new Gun("Rifle");
+				break;
 			case "shotgun":
 				playerGun = new Gun("Shotgun");
 			}
 			player.assignGun(playerGun);
-		}
-		else{
-			if(rand.nextInt(100) + 1 >= gunSpawnChance[0])
+		} else {
+			if (rand.nextInt(100) + 1 >= gunSpawnChance[0])
 				enemyGun = new Gun("Pistol");
-			else if(rand.nextInt(100) + 1 >= gunSpawnChance[1])
+			else if (rand.nextInt(100) + 1 >= gunSpawnChance[1])
 				enemyGun = new Gun("Rifle");
 			else
 				enemyGun = new Gun("Shotgun");
 			enemy.assignGun(enemyGun);
 		}
 	}
-	
-	private void createEnemy(){
+
+	private void createEnemy() {
 		enemy = new ActiveAgent(false);
 		giveGun(false);
-		
+		ui.enemyAppear(enemyGun.getName());
 	}
 
 }

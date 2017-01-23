@@ -18,7 +18,7 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.gun;
 public class Gun {
 	
 	private String[] name = {"Pistol", "Rifle", "Shotgun"};
-	private final int[] accuracy = {75, 65, 4};
+	private final int[] accuracy = {75, 65, 40};
 	private final int[] damage = {1, 2, 5};
 	private final int[] maxAmmo = {15, 10, 5};
 	private int gunChoice;
@@ -53,5 +53,5 @@ public class Gun {
 	public int getAccuracy(){
 		return accuracy[gunChoice];
 	}
-	
+
 }
