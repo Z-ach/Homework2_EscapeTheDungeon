@@ -45,5 +45,13 @@ public class UserInterface {
 		System.out.println("Type the name of the weapon you desire.");
 	}
 	
+	public void stepMessage(int steps){
+		System.out.println("You take a step forward. You now have " + steps + " steps left.");
+	}
+	
+	public void enemyAppear(String gun){
+		System.out.println("An enemy appears. He points his weapon at you. It's a " + gun + ".");
+	}
+	
 	
 }
