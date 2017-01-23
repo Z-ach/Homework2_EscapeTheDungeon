@@ -72,5 +72,32 @@ public class UserInterface {
 			System.out.println("The shot misses.");
 	}
 	
+	public void pause(){
+		System.out.println("Press the enter key to take a step.");
+		input.nextLine();
+	}
+	
+	public void shot(){
+		System.out.println("You're being shot at!");
+	}
+	
+	public void displayBullets(int bullets){
+		System.out.println("You now have " + bullets + " bullets remaining.");
+	}
+	
+	public void win(){
+		System.out.println("You made it to the exit. Congratulations.");
+	}
+	
+	public void lose(){
+		System.out.println("You died. Game over.");
+	}
+	
+	public void displayHealth(int health, boolean isPlayer){
+		if(isPlayer)
+			System.out.println("You now have " + health + " health left.");
+		else
+			System.out.println("The enemy now has " + health + " health left.");
+	}
 	
 }

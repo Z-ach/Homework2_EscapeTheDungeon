@@ -15,7 +15,7 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.Items;
  *
  * @author Zach
  */
-public class ItemDrops {
+public abstract class ItemDrops {
 	
 	public ItemDrops(){
 		

@@ -34,12 +34,18 @@ public class Gun {
 		else if(name.equals("Shotgun")){
 			gunChoice = 2;
 		}
+		currentAmmo = maxAmmo[gunChoice];
 	}
 	
-	public int shoot(){
-		if (currentAmmo > 0)
+	public int shoot(boolean hit){
+		currentAmmo--;
+		if (currentAmmo > 0 && hit)
 			return damage[gunChoice];
 		return 0;
+	}
+	
+	public int getCurrentAmmo(){
+		return currentAmmo;
 	}
 	
 	public void reload(){

@@ -50,7 +50,6 @@ public class GameEngine {
 		ui = new UserInterface();
 		rand = new Random();
 		player = new ActiveAgent(true);
-		playing = true;
 	}
 
 	public void start() {
@@ -58,12 +57,12 @@ public class GameEngine {
 		ui.promptForWeapon();
 		giveGun(true);
 
-		while (playing) {
-			playing = keepGoing();
-
+		while (keepGoing()) {
+			ui.pause();
 			if (takeStep()) {
 				createEnemy();
 				while (enemy.getHealth() > 0) {
+					keepGoing();
 					ui.decisionTime();
 					decision = ui.getInput();
 					switch (decision) {
@@ -72,18 +71,30 @@ public class GameEngine {
 						break;
 					case "shoot":
 						ui.shootMessage(shoot(true));
+						ui.displayBullets(playerGun.getCurrentAmmo());
+						ui.displayHealth(enemy.getHealth(), false);
 					}
+					ui.shot();
+					ui.shootMessage(shoot(false));
+					ui.displayHealth(player.getHealth(), true);
 				}
 			}
 
 		}
+
+		ui.win();
 	}
 
 	private boolean shoot(boolean isPlayer) {
+		boolean hit;
 		if (isPlayer) {
-			if (rand.nextInt(100) + 1 <= playerGun.getAccuracy()) {
-				enemy.takeDamage(playerGun.shoot());
-			}
+			hit = rand.nextInt(100) + 1 <= playerGun.getAccuracy();
+			enemy.takeDamage(playerGun.shoot(hit));
+			return hit;
+		} else if (!isPlayer) {
+			hit = rand.nextInt(100) + 1 <= enemyGun.getAccuracy();
+			player.takeDamage(enemyGun.shoot(hit));
+			return hit;
 		}
 		return false;
 	}
@@ -97,7 +108,11 @@ public class GameEngine {
 	}
 
 	private boolean keepGoing() {
-		return steps > 0 && player.getHealth() > 0;
+		if (player.getHealth() <= 0) {
+			ui.lose();
+			System.exit(0);
+		}
+		return steps > 0;
 	}
 
 	private boolean takeStep() {
