@@ -10,6 +10,9 @@
  */
 package edu.cpp.cs.cs141.prog_assgmnt_2.Items;
 
+import edu.cpp.cs.cs141.prog_assgmnt_2.Agents.ActiveAgent;
+import edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun;
+
 /**
  *
  *
@@ -17,8 +20,13 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.Items;
  */
 public class ItemDrops {
 	
-	public ItemDrops(){
-		
+	
+	public ItemDrops(Gun gun){
+		gun.reload();
+	}
+	
+	public ItemDrops(ActiveAgent player){
+		player.restoreHealth();
 	}
 
 }

@@ -13,6 +13,7 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.engine;
 import java.util.Random;
 
 import edu.cpp.cs.cs141.prog_assgmnt_2.Agents.ActiveAgent;
+import edu.cpp.cs.cs141.prog_assgmnt_2.Items.ItemDrops;
 import edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun;
 import edu.cpp.cs.cs141.prog_assgmnt_2.ui.UserInterface;
 
@@ -74,6 +75,7 @@ public class GameEngine {
 						ui.shootMessage(shoot(true));
 					}
 				}
+				giveDrop();
 			}
 
 		}
@@ -94,6 +96,17 @@ public class GameEngine {
 			return true;
 		}
 		return false;
+	}
+	
+	private void giveDrop(){
+		if(rand.nextInt(100) + 1 >= 30){
+			new ItemDrops(playerGun);
+			ui.dropMessage(true);
+		}
+		else{
+			new ItemDrops(player);
+			ui.dropMessage(false);
+		}
 	}
 
 	private boolean keepGoing() {
