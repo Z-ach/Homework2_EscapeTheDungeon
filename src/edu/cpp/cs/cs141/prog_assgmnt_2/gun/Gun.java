@@ -39,7 +39,7 @@ public class Gun {
 	
 	public int shoot(boolean hit){
 		currentAmmo--;
-		if (currentAmmo > 0 && hit)
+		if (hit)
 			return damage[gunChoice];
 		return 0;
 	}

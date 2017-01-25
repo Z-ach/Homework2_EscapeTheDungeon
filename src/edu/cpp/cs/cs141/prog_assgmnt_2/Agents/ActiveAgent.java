@@ -13,7 +13,8 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.Agents;
 import edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun;
 
 /**
- *
+ * This class represents living things within the game. The class can be used to create a player
+ * and to create all enemies the player will face. The 
  *
  * @author Zach
  */
@@ -21,7 +22,7 @@ public class ActiveAgent {
 	
 	private int health;
 		
-	private Gun gun;
+	//private Gun gun;
 	
 	public ActiveAgent(boolean isPlayer){
 		if(isPlayer)
@@ -30,13 +31,13 @@ public class ActiveAgent {
 			health = 5;
 	}
 	
-	public void assignGun(Gun gun){
+/*	public void assignGun(Gun gun){
 		this.gun = gun;
 	}
 	
 	public Gun getGun(){
 		return gun;
-	}
+	}*/
 	
 	public void restoreHealth(){
 		health += 5;

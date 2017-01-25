@@ -41,8 +41,6 @@ public class GameEngine {
 
 	private ActiveAgent player, enemy;
 
-	private boolean playing;
-
 	private final int[] gunSpawnChance = { 50, 35, 15 };
 
 	private Random rand;
@@ -64,6 +62,9 @@ public class GameEngine {
 				createEnemy();
 				while (enemy.getHealth() > 0) {
 					keepGoing();
+					ui.shot();
+					ui.shootMessage(shoot(false));
+					ui.displayHealth(player.getHealth(), true);
 					ui.decisionTime();
 					decision = ui.getInput();
 					switch (decision) {
@@ -75,9 +76,6 @@ public class GameEngine {
 						ui.displayBullets(playerGun.getCurrentAmmo());
 						ui.displayHealth(enemy.getHealth(), false);
 					}
-					ui.shot();
-					ui.shootMessage(shoot(false));
-					ui.displayHealth(player.getHealth(), true);
 				}
 				giveDrop();
 			}
@@ -89,11 +87,11 @@ public class GameEngine {
 
 	private boolean shoot(boolean isPlayer) {
 		boolean hit;
-		if (isPlayer) {
+		if (isPlayer && playerGun.getCurrentAmmo() > 0) {
 			hit = rand.nextInt(100) + 1 <= playerGun.getAccuracy();
 			enemy.takeDamage(playerGun.shoot(hit));
 			return hit;
-		} else if (!isPlayer) {
+		} else if (!isPlayer && enemyGun.getCurrentAmmo() > 0) {
 			hit = rand.nextInt(100) + 1 <= enemyGun.getAccuracy();
 			player.takeDamage(enemyGun.shoot(hit));
 			return hit;
@@ -134,7 +132,7 @@ public class GameEngine {
 		if (rand.nextInt(100) + 1 <= 15) {
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	private void giveGun(boolean isPlayer) {
@@ -150,7 +148,6 @@ public class GameEngine {
 			case "shotgun":
 				playerGun = new Gun("Shotgun");
 			}
-			player.assignGun(playerGun);
 		} else {
 			if (rand.nextInt(100) + 1 >= gunSpawnChance[0])
 				enemyGun = new Gun("Pistol");
@@ -158,7 +155,6 @@ public class GameEngine {
 				enemyGun = new Gun("Rifle");
 			else
 				enemyGun = new Gun("Shotgun");
-			enemy.assignGun(enemyGun);
 		}
 	}
 

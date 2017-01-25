@@ -60,6 +60,8 @@ public class UserInterface {
 	public void dropMessage(boolean gun){
 		if(gun)
 			System.out.println("An ammo cartridge drops from the enemy. It's full.");
+		else
+			System.out.println("He was carrying an health pack with him. You stick yourself up and gain 5 health.");
 	}
 	
 	public void fleeMessage(boolean flee){
