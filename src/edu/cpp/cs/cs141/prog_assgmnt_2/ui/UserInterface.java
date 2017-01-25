@@ -57,6 +57,11 @@ public class UserInterface {
 		System.out.println("Do you want to shoot, or attempt to flee? Enter \"shoot\" or \"flee\"");
 	}
 	
+	public void dropMessage(boolean gun){
+		if(gun)
+			System.out.println("An ammo cartridge drops from the enemy. It's full.");
+	}
+	
 	public void fleeMessage(boolean flee){
 		System.out.println("You attempt to flee");
 		if(flee)
