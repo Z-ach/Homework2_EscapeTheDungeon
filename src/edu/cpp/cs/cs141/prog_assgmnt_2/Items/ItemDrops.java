@@ -18,7 +18,7 @@ import edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun;
  *
  * @author Zach
  */
-public abstract class ItemDrops {
+public class ItemDrops {
 	
 	
 	public ItemDrops(Gun gun){
