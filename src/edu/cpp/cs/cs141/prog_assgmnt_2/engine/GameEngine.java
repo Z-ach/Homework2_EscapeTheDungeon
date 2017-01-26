@@ -31,8 +31,17 @@ public class GameEngine {
 	 */
 	private int steps = 10;
 
+	/**
+	 * This field will hold an object of type {@link edu.cpp.cs.cs141.prog_assgmnt_2.ui.UserInterface},
+	 * and is used to make calls to the console and take input.
+	 */
 	private UserInterface ui;
 
+	/**
+	 * This field represents the weapon that the user chooses. This field will be set when the {@link #start()}
+	 * method is called, and will be used to determine what type of {@link edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun}
+	 * the player will use.
+	 */
 	private String weaponChoice;
 
 	private String decision;
@@ -158,6 +167,11 @@ public class GameEngine {
 		}
 	}
 
+	/**
+	 * This method creates a new enemy, which is an {@link edu.cpp.cs.cs141.prog_assgmnt_2.Agents.ActiveAgent}.
+	 * It then gives it a weapon using {@link #giveGun(boolean)}, and notifies the player of the game
+	 * through a call to the ui: {@link edu.cpp.cs.cs141.prog_assgmnt_2.ui.UserInterface#enemyAppear(String)}.
+	 */
 	private void createEnemy() {
 		enemy = new ActiveAgent(false);
 		giveGun(false);
