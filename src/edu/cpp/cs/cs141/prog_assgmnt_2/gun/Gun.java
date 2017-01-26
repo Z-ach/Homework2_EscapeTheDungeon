@@ -11,7 +11,7 @@
 package edu.cpp.cs.cs141.prog_assgmnt_2.gun;
 
 /**
- *
+ * This class represents the gun object within the game. 
  *
  * @author Zach
  */
@@ -24,6 +24,13 @@ public class Gun {
 	private int gunChoice;
 	private int currentAmmo;
 	
+	/**
+	 * When this class is instantiated, {@link #Gun(String)} uses the argument passed in to determine the type of 
+	 * {@link Gun} to create. {@link #gunChoice} is then set to {@code 0}, {@code 1}, or {@code 2} depending on the
+	 * correspond
+	 * 
+	 * @param name the name of the gun to create
+	 */
 	public Gun(String name){
 		if(name.equals("Pistol")){
 			gunChoice = 0;
