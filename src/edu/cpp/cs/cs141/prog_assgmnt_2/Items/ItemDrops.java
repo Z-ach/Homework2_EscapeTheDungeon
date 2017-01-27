@@ -17,7 +17,7 @@ import edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun;
  * This class is used to represent all of the various things that could drop from an enemy.
  * This class is not abstract because there is no need for it to be. There are only two things
  * that can drop from an enemy. The first thing that can drop is ammo, and the second thing
- * that can drop is a healthpack. 
+ * that can drop is a health pack. 
  *
  * @author Zach
  */
