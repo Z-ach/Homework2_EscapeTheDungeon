@@ -13,22 +13,39 @@ package edu.cpp.cs.cs141.prog_assgmnt_2.ui;
 import java.util.Scanner;
 
 /**
- *
+ * This class handles all interactions with the player of the game. All print statements are written here,
+ * and all input is handled here as well. This class contains various methods that communicate with the player.
  *
  * @author Zach
  */
 public class UserInterface {
 	
+	/**
+	 * This field represents the {@link java.util.Scanner} object, and is used to take user input when prompted.
+	 */
 	private Scanner input;
 	
+	/**
+	 * This is the constructor for the {@link UserInterface}. The only thing it does is instantiate the Scanner, which
+	 * is used later in this class in a different method to take input from the player of the game.
+	 */
 	public UserInterface(){
 		input = new Scanner(System.in);
 	}
 	
+	/**
+	 * This method is used to get the input from the player of the game.
+	 * 
+	 * @return the String value of the user's input
+	 */
 	public String getInput(){
 		return input.nextLine();
 	}
 	
+	/**
+	 * This method prints out when the game starts. It is used to welcome the player to the game and to explain the rules
+	 * that will be used during the game.
+	 */
 	public void startMessage(){
 		System.out.println("Welcome to the Dungeon!");
 		System.out.println("Each step you take you will have a chance to encounter an enemy.");
@@ -37,6 +54,10 @@ public class UserInterface {
 		System.out.println("There are only 10 steps to the exit. Good luck.");
 	}
 	
+	/**
+	 * This method prints out all {@link edu.cpp.cs.cs141.prog_assgmnt_2.gun.Gun}s in the game, and displays the relevant 
+	 * statistics associated with each weapon.
+	 */
 	public void promptForWeapon(){
 		System.out.println("\nWhat weapon will you choose?");
 		System.out.println("Pistol:\t\tHit Chance: 75%\t\tDamage: 1hp\tMax Ammo: 15");
@@ -45,6 +66,11 @@ public class UserInterface {
 		System.out.println("Type the name of the weapon you desire.");
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param steps the number of {@link edu.cpp.cs.cs141.prog_assgmnt_2.engine.GameEngine#steps}.
+	 */
 	public void stepMessage(int steps){
 		System.out.println("You take a step forward. You now have " + steps + " steps left.");
 	}
