@@ -67,22 +67,36 @@ public class UserInterface {
 	}
 	
 	/**
+	 * This method tells the player of the game how many steps they have remaining until they reach the exit.
 	 * 
-	 * 
-	 * @param steps the number of {@link edu.cpp.cs.cs141.prog_assgmnt_2.engine.GameEngine#steps}.
+	 * @param steps the number of {@link edu.cpp.cs.cs141.prog_assgmnt_2.engine.GameEngine#steps} remaining.
 	 */
 	public void stepMessage(int steps){
 		System.out.println("You take a step forward. You now have " + steps + " steps left.");
 	}
 	
+	/**
+	 * This method notifies the player of the game that an enemy has appeared, and that he is pointing his weapon at them.
+	 * 
+	 * @param gun the type of weapon that the enemy is pointing at the player.
+	 */
 	public void enemyAppear(String gun){
 		System.out.println("An enemy appears. He points his weapon at you. It's a " + gun + ".");
 	}
 	
+	/**
+	 * This method is called to prompt the user to make a decision, either to shoot the enemy or flee from the enemy.
+	 */
 	public void decisionTime(){
 		System.out.println("Do you want to shoot, or attempt to flee? Enter \"shoot\" or \"flee\"");
 	}
 	
+	/**
+	 * This method notifies the player that they have just gotten a drop from the enemy that has been killed. The drop can
+	 * either be an ammo cartridge or a health pack, and is dependent on what is passed in as an argument. 
+	 * 
+	 * @param gun {@code true} if it is an ammo cartridge, {@code false} if it is a health pack.
+	 */
 	public void dropMessage(boolean gun){
 		if(gun)
 			System.out.println("An ammo cartridge drops from the enemy. It's full.");
@@ -90,6 +104,12 @@ public class UserInterface {
 			System.out.println("He was carrying an health pack with him. You stick yourself up and gain 5 health.");
 	}
 	
+	/**
+	 * This method is to notify the player of the result of them trying to flee. The message is determined by the success of
+	 * the flee attempt. 
+	 * 
+	 * @param flee {@code true} if the flee works, {@code false} if the flee failed.
+	 */
 	public void fleeMessage(boolean flee){
 		System.out.println("You attempt to flee");
 		if(flee)
@@ -98,6 +118,12 @@ public class UserInterface {
 			System.out.println("The thing in the darkness grabs you and pulls you back. Flee failed.");
 	}
 	
+	/**
+	 * This message notifies the player of the result of a gun firing. This method can be used for both the enemy firing a gun and
+	 * the player firing a gun.
+	 * 
+	 * @param hit {@code true} if the shot hits, {@code false} if the shot misses.
+	 */
 	public void shootMessage(boolean hit){
 		if(hit)
 			System.out.println("The shot hits it mark.");
@@ -105,27 +131,51 @@ public class UserInterface {
 			System.out.println("The shot misses.");
 	}
 	
+	/**
+	 * This method pauses the game until the player presses enter. This is to allow the player to feel like they are interacting 
+	 * and are in more control.
+	 */
 	public void pause(){
 		System.out.println("Press the enter key to take a step.");
 		input.nextLine();
 	}
 	
+	/**
+	 * This method notifies the player that they are being shot at.
+	 */
 	public void shot(){
 		System.out.println("You're being shot at!");
 	}
 	
+	/**
+	 * This method notifies the player of the remaining amount of ammo they have in their gun.
+	 * 
+	 * @param bullets the number of bullets in the gun
+	 */
 	public void displayBullets(int bullets){
 		System.out.println("You now have " + bullets + " bullets remaining.");
 	}
 	
+	/**
+	 * This prints the win message if the player wins the game.
+	 */
 	public void win(){
 		System.out.println("You made it to the exit. Congratulations.");
 	}
 	
+	/**
+	 * If the player's health reaches 0, the game is over, and they lose.
+	 */
 	public void lose(){
 		System.out.println("You died. Game over.");
 	}
 	
+	/**
+	 * This is used to display the health value associated with a player or an enemy. 
+	 * 
+	 * @param health the amount of health remaining.
+	 * @param isPlayer {@code true} if the health is for the player, {@code false} if it is the enemy's health.
+	 */
 	public void displayHealth(int health, boolean isPlayer){
 		if(isPlayer)
 			System.out.println("You now have " + health + " health left.");
